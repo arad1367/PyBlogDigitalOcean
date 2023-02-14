@@ -18,7 +18,7 @@ import dj_database_url
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 # from dotenv import load_dotenv 
 # load_dotenv(os.path.join(BASE_DIR, '.env'))
 # load_dotenv(os.path.join(BASE_DIR, "django_media", ".env"))
@@ -139,9 +139,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static", '/workspace/media/profile_pics/'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = "/media/"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -149,7 +149,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'blog:blog-home'
 LOGIN_URL = 'users:login'
 
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
